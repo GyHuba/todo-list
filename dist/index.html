@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Todo List</title>
 </head>
 <body>
+    <div id="content"></div>
+
+    <dialog open="">
+        <div class="dialog-header">
+            <i class="fa fa-close"></i>
+        </div>
+        <form method="dialog">
+            <div class="text-inputs">
+                <input type="text" name="title" id="title" placeholder="Title: Go to the gym" maxlength="40" minlength="1" required>        
+                <textarea type="textarea" name="description" id="description" placeholder="Details: Today is chest day." rows="5"  required></textarea> 
+            </div>
+        
+            <div class="date">
+                <label for="dua-date">Due Date:</label>
+                <input type="datetime-local" name="dua-date" id="dua-date" required>
+            </div>
+            
+            <div class="priority">
+                <div class="priority-title">Priority:</div>
+                <div class="priority-box priority-low">LOW</div>
+                <div class="priority-box priority-medium">MEDIUM</div>
+                <div class="priority-box priority-high">HIGHT</div>
+            </div>
+            <button type="submit" class="submit-btn">ADD TO DO</button>
+        </form>
+            
+    </dialog>
     
     <script src="main.js"></script>
 </body>
