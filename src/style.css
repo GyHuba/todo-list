@@ -36,8 +36,9 @@ body {
     padding: 0.5rem 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0.5rem;
+    min-height: 400px;
 }
 
 .task-line {
@@ -49,6 +50,24 @@ body {
     font-size: 1.3rem;
     background-color: #AEC09A;
     overflow: hidden;
+    cursor: pointer;
+    transition: ease-in 0.1s;
+}
+
+.task-line:hover{
+    transform: scaleY(1.1);
+}
+
+.task-line.low {
+    border-left: 0.5rem solid green;
+}
+
+.task-line.medium {
+    border-left: 0.5rem solid orange;
+}
+
+.task-line.high {
+    border-left: 0.5rem solid red;
 }
 
 .checked,
@@ -65,6 +84,11 @@ dialog {
     border-radius: 10px;
     font-size: 1.5rem;
     box-shadow: 1px 3px 6px 6px rgba(61, 58, 58, 0.75);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
 }
 
 .dialog-header {
@@ -123,7 +147,8 @@ form {
 }
 
 .submit-btn:hover,
-.priority-box:hover {
+.priority-box:hover,
+.priority-box.active {
     color: white;
 }
 
@@ -132,7 +157,8 @@ form {
     color: green;
 }
 
-.priority-low:hover {
+.priority-low:hover,
+.priority-low.active {
     background-color: green;
 }
 
@@ -141,7 +167,8 @@ form {
     color: orange;
 }
 
-.priority-medium:hover {
+.priority-medium:hover,
+.priority-medium.active {
     background-color: orange;
 }
 
@@ -151,7 +178,8 @@ form {
     color: red;
 }
 
-.priority-high:hover {
+.priority-high:hover,
+.priority-high.active {
     background-color: red;
 }
 
@@ -167,6 +195,6 @@ form {
     color: #344C11;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
     background-color: #344C11;
 }
