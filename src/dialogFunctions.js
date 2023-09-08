@@ -6,11 +6,11 @@ import { addProject } from "./projects";
 export function dialogFunctions() {
 
     const dialog = document.querySelector('dialog');
+    const form = document.querySelector('#form')
     const title = document.querySelector('#title');
     const description = document.querySelector('#description');
     const date = document.querySelector('#dua-date');
     const prioritys = document.querySelectorAll('.priority-box');
-    const submitBtn = document.querySelector('.submit-btn');
     const dialogCloseBtn = document.querySelector('.fa-close');
 
     prioritys.forEach(priority => {
@@ -36,8 +36,10 @@ export function dialogFunctions() {
     }
 
     function newProject(title, description, date, priority) {
-        // if(title === undefined || description === undefined || date === undefined || priority === undefined) return;
-        console.log(priority)
+        if(priority === undefined){
+            priority = 'low';
+        }
+        if(date === undefined) return
  
         return {
             title: title.value,
@@ -48,7 +50,7 @@ export function dialogFunctions() {
         }
     }
 
-    submitBtn.addEventListener('click', () => {
+    form.addEventListener('submit', () => {
         addProject(newProject(title, description, date, getPriority()))
         createList();
     })

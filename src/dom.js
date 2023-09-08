@@ -60,11 +60,7 @@ export function createList() {
 
         const taskLine = document.createElement('div');
         taskLine.classList.add('task-line');
-        taskLine.addEventListener('click', ()=>{
-            taskCard.innerHTML = "";
-            taskCard.classList.remove('remove')
-            taskCard.append(taskCardHeader, showSingleTask(idx))
-        })
+        
 
         if (task.priority === 'high') {
             taskLine.classList.add('high');
@@ -83,6 +79,11 @@ export function createList() {
         const title = document.createElement('div');
         title.classList.add('title');
         title.innerText = task.title;
+        title.addEventListener('click', ()=>{
+            taskCard.innerHTML = "";
+            taskCard.classList.remove('remove')
+            taskCard.append(taskCardHeader, showSingleTask(idx))
+        })
 
         const description = document.createElement('div');
         description.classList.add('description');
