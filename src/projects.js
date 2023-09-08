@@ -9,28 +9,28 @@ export function setProjects() {
             {
                 title: 'Cleaning',
                 description: 'just clean the house pls',
-                date: '02.03.2023',
+                date: new Date().toLocaleDateString(),
                 priority: 'low',
                 checked: 'false,'
             },
             {
                 title: 'Gym',
                 description: 'arm day',
-                date: '03.03.2023',
+                date: new Date().toLocaleDateString(),
                 priority: 'high',
                 checked: 'true',
             },
             {
                 title: 'Family time',
                 description: 'play with kids',
-                date: '02.03.2023',
+                date: new Date().toLocaleDateString(),
                 priority: 'high',
                 checked: 'false',
             },
             {
                 title: 'Walk the doggy',
                 description: 'also dont forget to pick up the shit',
-                date: '02.03.2023',
+                date: new Date().toLocaleDateString(),
                 priority: 'medium',
                 checked: 'false',
             },
