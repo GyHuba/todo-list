@@ -1,4 +1,4 @@
-import { openDialog } from "./dialogFunctions";
+import { dialogFunctions, editTask, openDialog } from "./dialogFunctions";
 import { getDatas } from "./localStorage";
 import { removeProject } from "./projects";
 
@@ -51,7 +51,7 @@ export function createList() {
     const cardCloseBtn = document.createElement('i');
     cardCloseBtn.classList.add("fa", "fa-close");
     taskCardHeader.append(cardCloseBtn)
-    cardCloseBtn.addEventListener('click', ()=>{
+    cardCloseBtn.addEventListener('click', () => {
         taskCard.innerHTML = "";
         taskCard.classList.add('remove');
     })
@@ -60,7 +60,7 @@ export function createList() {
 
         const taskLine = document.createElement('div');
         taskLine.classList.add('task-line');
-        
+
 
         if (task.priority === 'high') {
             taskLine.classList.add('high');
@@ -75,14 +75,14 @@ export function createList() {
         const checked = document.createElement("input");
         checked.classList.add('checked');
         checked.setAttribute("type", "checkbox");
-        checked.addEventListener('change', ()=>{
-            title.classList.toggle("crossed");
+        checked.addEventListener('change', () => {
+            taskLine.classList.toggle('crossed');
         })
 
         const title = document.createElement('div');
         title.classList.add('title');
         title.innerText = task.title;
-        title.addEventListener('click', ()=>{
+        title.addEventListener('click', () => {
             taskCard.innerHTML = "";
             taskCard.classList.remove('remove')
             taskCard.append(taskCardHeader, showSingleTask(idx))
@@ -94,15 +94,20 @@ export function createList() {
 
         const date = document.createElement('div');
         date.classList.add('date');
-        date.innerText = task.date
+        date.innerText = new Date(task.date).toLocaleDateString();
 
         const edit = document.createElement('i');
         edit.classList.add('fa', 'fa-pencil-square')
+        edit.addEventListener('click', (e) => {
+            const dialog = document.querySelector('dialog')
+            editTask(dialog, idx)
+        })
 
         const deleteBtn = document.createElement('i');
         deleteBtn.classList.add('fa', 'fa-trash')
-        deleteBtn.addEventListener('click', ()=>{
-            removeProject(idx)})
+        deleteBtn.addEventListener('click', () => {
+            removeProject(idx)
+        })
 
         taskLine.append(checked, title, date, edit, deleteBtn);
         content.append(taskLine, taskCard)
@@ -110,8 +115,8 @@ export function createList() {
     })
 }
 
-function showSingleTask(idx){
-    const tasks = getDatas().map(task =>task);
+function showSingleTask(idx) {
+    const tasks = getDatas().map(task => task);
     const task = tasks[idx]
 
     const taskCardContainer = document.createElement('div');
@@ -132,7 +137,7 @@ function showSingleTask(idx){
     const cardDate = document.createElement('div');
     cardDate.classList.add('card-date');
     cardDate.innerHTML = `<strong>Due date:</strong> ${task.date}`;
-    
+
     taskCardContainer.append(cardTitle, cardDescription, cardPriority, cardDate)
 
     return taskCardContainer;

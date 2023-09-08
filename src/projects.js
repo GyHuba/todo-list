@@ -9,28 +9,28 @@ export function setProjects() {
             {
                 title: 'Cleaning',
                 description: 'just clean the house pls',
-                date: new Date().toLocaleDateString(),
+                date: new Date().toJSON().slice(0, 10),
                 priority: 'low',
                 checked: 'false,'
             },
             {
                 title: 'Gym',
                 description: 'arm day',
-                date: new Date().toLocaleDateString(),
+                date: new Date().toJSON().slice(0, 10),
                 priority: 'high',
                 checked: 'true',
             },
             {
                 title: 'Family time',
                 description: 'play with kids',
-                date: new Date().toLocaleDateString(),
+                date: new Date().toJSON().slice(0, 10),
                 priority: 'high',
                 checked: 'false',
             },
             {
                 title: 'Walk the doggy',
                 description: 'also dont forget to pick up the shit',
-                date: new Date().toLocaleDateString(),
+                date: new Date().toJSON().slice(0, 10),
                 priority: 'medium',
                 checked: 'false',
             },
@@ -55,7 +55,6 @@ export function removeProject(idx) {
     createList();
 }
 
-export function projectSetting(idx){
-    let projectArray = getDatas();
-    reWriteProject(projectArray[idx].title, projectArray[idx].description, projectArray[idx].date, projectArray[idx].priority, projectArray[idx].checked)
+export function projectEdit(newArray){
+    setData(newArray)    
 }
