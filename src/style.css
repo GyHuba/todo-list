@@ -91,7 +91,8 @@ dialog {
 
 }
 
-.dialog-header {
+.dialog-header,
+.task-card-header {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     background-color: #AEC670;
@@ -100,7 +101,8 @@ dialog {
     text-align: end;
 }
 
-.dialog-header i {
+.dialog-header i,
+.task-card-header i {
     cursor: pointer;
 }
 
@@ -197,4 +199,35 @@ form {
 
 .submit-btn:hover {
     background-color: #344C11;
+}
+
+/* TASK CARD*/
+
+.task-card{
+    width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    box-shadow: 1px 3px 6px 6px rgba(61, 58, 58, 0.75);
+}
+
+.task-card.remove{
+    display: none;
+}
+
+.task-card-container{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.8rem;
+}
+
+.card-title{
+    align-self: center;
+    font-size: 1.8rem;
+    padding-bottom: 0.5rem;
 }

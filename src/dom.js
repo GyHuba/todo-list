@@ -1,4 +1,5 @@
 import { openDialog } from "./dialogFunctions";
+import { getDatas } from "./localStorage";
 import { removeProject } from "./projects";
 
 export default function dom() {
@@ -37,14 +38,33 @@ export default function dom() {
 
 
 export function createList() {
-    const tasks = JSON.parse(localStorage.getItem('projects'))?.map(element => element)
+    const tasks = getDatas()?.map(element => element)
     const content = document.querySelector('.content');
     content.innerHTML = "";
+
+    const taskCard = document.createElement('div');
+    taskCard.classList.add('task-card', 'remove');
+
+    const taskCardHeader = document.createElement('div');
+    taskCardHeader.classList.add('task-card-header');
+
+    const cardCloseBtn = document.createElement('i');
+    cardCloseBtn.classList.add("fa", "fa-close");
+    taskCardHeader.append(cardCloseBtn)
+    cardCloseBtn.addEventListener('click', ()=>{
+        taskCard.innerHTML = "";
+        taskCard.classList.add('remove');
+    })
 
     tasks?.forEach((task, idx) => {
 
         const taskLine = document.createElement('div');
         taskLine.classList.add('task-line');
+        taskLine.addEventListener('click', ()=>{
+            taskCard.innerHTML = "";
+            taskCard.classList.remove('remove')
+            taskCard.append(taskCardHeader, showSingleTask(idx))
+        })
 
         if (task.priority === 'high') {
             taskLine.classList.add('high');
@@ -81,7 +101,35 @@ export function createList() {
             removeProject(idx)})
 
         taskLine.append(checked, title, date, edit, deleteBtn);
-        content.append(taskLine)
+        content.append(taskLine, taskCard)
 
     })
+}
+
+function showSingleTask(idx){
+    const tasks = getDatas().map(task =>task);
+    const task = tasks[idx]
+
+    const taskCardContainer = document.createElement('div');
+    taskCardContainer.classList.add('task-card-container');
+
+    const cardTitle = document.createElement('div');
+    cardTitle.classList.add('card-title');
+    cardTitle.innerHTML = `<strong>${task.title}`;
+
+    const cardDescription = document.createElement('div');
+    cardDescription.classList.add('card-description');
+    cardDescription.innerHTML = `<strong>Details:</strong> ${task.description}`;
+
+    const cardPriority = document.createElement('div');
+    cardPriority.classList.add('card-priority');
+    cardPriority.innerHTML = `<strong>Priority:</strong> ${task.priority}`;
+
+    const cardDate = document.createElement('div');
+    cardDate.classList.add('card-date');
+    cardDate.innerHTML = `<strong>Due date:</strong> ${task.date}`;
+    
+    taskCardContainer.append(cardTitle, cardDescription, cardPriority, cardDate)
+
+    return taskCardContainer;
 }

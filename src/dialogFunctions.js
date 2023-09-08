@@ -20,10 +20,6 @@ export function dialogFunctions() {
         })
     })
 
-    function bazdmeg(){
-        return "bazdmeg!!!"
-    }
-
     function getPriority() {
         let returnPriority;
         prioritys.forEach(priority => {
