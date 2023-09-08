@@ -75,6 +75,9 @@ export function createList() {
         const checked = document.createElement("input");
         checked.classList.add('checked');
         checked.setAttribute("type", "checkbox");
+        checked.addEventListener('change', ()=>{
+            title.classList.toggle("crossed");
+        })
 
         const title = document.createElement('div');
         title.classList.add('title');
