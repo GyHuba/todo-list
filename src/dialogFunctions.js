@@ -25,13 +25,14 @@ export function dialogFunctions() {
     }
 
     function getPriority() {
+        let returnPriority;
         prioritys.forEach(priority => {
             if (priority.classList.contains('active')) {
-                console.log(priority.innerHTML);
-                const value = priority.innerHTML;
-                return value
+                returnPriority = priority.innerHTML.toLowerCase();
+                return returnPriority
             }
         })
+        return returnPriority
     }
 
     function closeDialog() {
@@ -40,11 +41,12 @@ export function dialogFunctions() {
 
     function newProject(title, description, date, priority) {
         // if(title === undefined || description === undefined || date === undefined || priority === undefined) return;
+        console.log(priority)
  
         return {
             title: title.value,
             description: description.value,
-            date: date.value,
+            date: new Date(date.value).toLocaleDateString(),
             priority: priority,
             checked: 'false',
         }
